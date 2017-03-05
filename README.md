@@ -277,3 +277,37 @@ meld $2 $4 $3
 будете гораздо более уверенным в корректности вашего комита. Из-за этой
 уверенности, появится чувство что разрешение конфликтов превратилось в
 увлекательное занятие.
+
+### Бонус от переводчика
+
+Для тех кто пользуется tmux и n?vim, предлагаю следующий скрипт [gitmerge](https://github.com/vbauerster/dotfiles/blob/master/bin/gitmerge):
+```
+#!/bin/sh
+sn=gitmerge
+
+tmux new-session -d -s "$sn" -n "diff3" "nvim -d $2 $4 $3"
+tmux split-window -t "$sn:1" -v "nvim -d $2 $1"
+tmux split-window -t "$sn:1" -h "nvim -d $1 $3"
+```
+
+Соответственно добавьте следующее в ваш [~/.gitconfig](https://github.com/vbauerster/dotfiles/blob/100cd6e3045a8d78a6a82f0b88dd51da1d827713/gitconfig#L41-L44)
+```
+[mergetool "gitmerge"]
+	cmd = $HOME/bin/gitmerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[merge]
+	tool = gitmerge
+```
+
+#### git merge master
+![git merge master workflow](diff3/git_merge_master_-_workflow.png)
+
+![sessiow switch](diff3/session_switch.png)
+
+![git merge master](diff3/git_merge_master_-_diff3.png)
+
+#### git rebase master
+![git merge master workflow](diff3/git_rebase_master_-_workflow.png)
+
+![sessiow switch](diff3/session_switch.png)
+
+![git merge master](diff3/git_rebase_master_-_diff3.png)
