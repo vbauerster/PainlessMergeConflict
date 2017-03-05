@@ -299,24 +299,31 @@ tmux split-window -t "$sn:1" -h "nvim -d $1 $3"
 ```
 
 Воркфлоу разрешения конфликта будет выглядеть так:
+
 ![git merge master workflow](diff3/git_merge_master_-_workflow.png)
 
 Пока игнорируем вопрос (Was the merge successful [y/n]?) и переключаемся в
-сессию gitmerge (сочетание TMUXPREFIX + s):
+сессию под названием gitmerge (сочетание TMUXPREFIX + s):
 
 ![sessiow switch](diff3/session_switch.png)
 
 Видим наше трёх-оконное представление на одном экране. Цифрами обозначены сплиты
 (panes) tmux'a, буквами соответствующие состояния. Делаем правки для разрешения
-конфликта, т.е. редактируем состояние (D) и сохраняем. После этого надо
-вернуться обратно в исходную сессию tmux'a и подтвердить что слияние произошло
-успешно.
+конфликта, т.е. редактируем состояние (D) и сохраняем. После этого возвращаемся
+обратно в исходную сессию tmux'a и подтверждаем что слияние произошло успешно.
+
 ![git merge master](diff3/git_merge_master_-_diff3.png)
 
-#### git rebase master
+### git rebase master
+
+Лично я предпочитаю и считаю более правильным делать сначала rebase master в ветке beta, и только после этого переключаться в master и делать git merge beta. В принципе воркфлоу не сильно отличается, за исключением трёх-оконного вида.
 
 ![git merge master workflow](diff3/git_rebase_master_-_workflow.png)
 
+Переключаемся в сессию gitmerge
+
 ![sessiow switch](diff3/session_switch.png)
+
+Обратите внимание, что состояния (B) и (C) поменялись местами:
 
 ![git merge master](diff3/git_rebase_master_-_diff3.png)
