@@ -85,9 +85,9 @@ Are belong to you.
 
 Хитрость заключается в том, что Listing 1 не даёт вам полную информацию,
 необходимую для совершения корректного слияния. На самом деле, в процессе
-слияния участвуют четыре важных части информации, три из которых просто
-необходимы для успешного разрешения конфликта. В случае Listing 1, Git
-предоставил вам только две части информации.
+слияния участвуют четыре важных части информации (состояния), три из которых
+просто необходимы для успешного разрешения конфликта. В случае Listing 1, Git
+предоставил вам только два состояния.
 
 Следующая диаграмма иллюстрирует эти четыре состояния:
 
@@ -298,14 +298,19 @@ tmux split-window -t "$sn:1" -h "nvim -d $1 $3"
 	tool = gitmerge
 ```
 
-#### git merge master
+Воркфлоу разрешения конфликта будет выглядеть так:
 ![git merge master workflow](diff3/git_merge_master_-_workflow.png)
 
+Пока игнорируем вопрос (Was the merge successful [y/n]?) и переключаемся в
+сессию gitmerge (сочетание TMUXPREFIX + s):
 ![sessiow switch](diff3/session_switch.png)
 
+Видим наше трёх-оконное представление на одном экране. Цифрами обозначены сплиты
+(panes) tmux'a, буквами соответствующие состояния.
 ![git merge master](diff3/git_merge_master_-_diff3.png)
 
 #### git rebase master
+
 ![git merge master workflow](diff3/git_rebase_master_-_workflow.png)
 
 ![sessiow switch](diff3/session_switch.png)
