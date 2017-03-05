@@ -281,6 +281,7 @@ meld $2 $4 $3
 ### Бонус от переводчика
 
 Для тех кто пользуется tmux и n?vim, предлагаю следующий скрипт [gitmerge](https://github.com/vbauerster/dotfiles/blob/master/bin/gitmerge):
+
 ```
 #!/bin/sh
 sn=gitmerge
@@ -291,6 +292,7 @@ tmux split-window -t "$sn:1" -h "nvim -d $1 $3"
 ```
 
 Соответственно добавьте следующее в ваш [~/.gitconfig](https://github.com/vbauerster/dotfiles/blob/100cd6e3045a8d78a6a82f0b88dd51da1d827713/gitconfig#L41-L44)
+
 ```
 [mergetool "gitmerge"]
 	cmd = $HOME/bin/gitmerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
@@ -327,3 +329,8 @@ tmux split-window -t "$sn:1" -h "nvim -d $1 $3"
 Обратите внимание, что состояния (B) и (C) поменялись местами:
 
 ![git merge master](diff3/git_rebase_master_-_diff3.png)
+
+Рекомендую всем поиграться с [примером
+репозитария](https://github.com/vbauerster/PainlessMergeConflict/blob/master/mergeconflict.tgz)
+хотя бы один раз, сделать разрешение конфликта по вышеописанной схеме. Лично я
+больше не гадаю а что же выбрать "Accept theirs" или "Accept yours" :)
